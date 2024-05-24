@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxbpo1xakwbb3"]
+
+[ext_resource type="Script" path="res://scripts/jugador.gd" id="1_8rkyc"]
+[ext_resource type="Texture2D" uid="uid://bl4mi7e1o1gu5" path="res://assets/img/linternOff.png" id="1_tek88"]
+[ext_resource type="Texture2D" uid="uid://do68tf4b3cr4o" path="res://assets/img/linternOn.png" id="2_p77gf"]
+[ext_resource type="AudioStream" uid="uid://nadr1cqq38k1" path="res://assets/audio/flashlight-clicking-on-105809.mp3" id="4_atot8"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w8lj3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jqyhh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tek88")
+}],
+"loop": true,
+"name": &"Apagada",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p77gf")
+}],
+"loop": true,
+"name": &"Prendida",
+"speed": 5.0
+}]
+
+[node name="Jugador" type="CharacterBody3D" groups=["Jugador"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_8rkyc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_w8lj3")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 3
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+fov = 37.8493
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Linterna" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Linterna"]
+position = Vector2(245, -92)
+scale = Vector2(0.532857, 0.532857)
+sprite_frames = SubResource("SpriteFrames_jqyhh")
+animation = &"Prendida"
+
+[node name="Centro" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.361091, 0.361091)
+color = Color(1, 1, 1, 0.14902)
+
+[node name="SonidoLinterna" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_atot8")
+bus = &"SFX"
