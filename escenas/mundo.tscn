@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://djrmjt5ra0m1s"]
+[gd_scene load_steps=10 format=3 uid="uid://djrmjt5ra0m1s"]
 
-[ext_resource type="PackedScene" uid="uid://r7gimfwg3hkv" path="res://JugadorV2/Player.tscn" id="1_ekufu"]
+[ext_resource type="PackedScene" uid="uid://r7gimfwg3hkv" path="res://assets/models/JugadorV2/Player.tscn" id="1_ekufu"]
+[ext_resource type="PackedScene" uid="uid://cce740t263wch" path="res://assets/models/Enemigo/enemigo.scn" id="2_oasfy"]
+[ext_resource type="Script" path="res://assets/models/Enemigo/enemigo.gd" id="3_0c370"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64uq4"]
 albedo_color = Color(0.392157, 0, 0.105882, 1)
@@ -92,3 +94,7 @@ transform = Transform3D(0.989408, 0.103033, -0.102251, -0.0387832, 0.866435, 0.4
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_ekufu")]
+
+[node name="Enemigo" parent="." instance=ExtResource("2_oasfy")]
+transform = Transform3D(0.00770342, 0, 0, 0, 0.00770342, 0, 0, 0, 0.00770342, 0.0615072, 0.817899, -7.96638)
+script = ExtResource("3_0c370")
