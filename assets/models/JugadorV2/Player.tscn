@@ -143,8 +143,11 @@ mesh = SubResource("8")
 
 [node name="SpotLight" type="SpotLight3D" parent="Flashlight/FlashLightMesh"]
 transform = Transform3D(-0.999998, -0.00192026, -1.54823e-05, -0.00192027, 0.99987, 0.0160466, -1.53184e-05, 0.0160466, -0.999871, -0.00569057, -0.000832319, 0.403029)
+light_energy = 4.0
 shadow_enabled = true
-spot_attenuation = 2.37841
+spot_range = 8.0
+spot_attenuation = 1.86607
+spot_angle = 35.0
 
 [node name="FlashlightSound" type="AudioStreamPlayer3D" parent="Flashlight/FlashLightMesh"]
 stream = ExtResource("5")
